@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  font-family: "Helvetica", cursive;
+}
+
+#root {
+  height: auto;
+  min-height: 100vh;
+  background-color: #82a0bc;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.alert {
+  padding: 20px 50px;
+  background-color: #f44336;
+  color: white;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.Title {
+  text-align: center;
+  color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000;
+}
+
+.Form {
+  /* border: 1px solid blue; */
+  height: 30px;
+  margin: auto;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.InputItem {
+  width: 50vw;
+  max-width: 500px;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.AddButton {
+  height: 100%;
+  margin: 0 0 0 10px;
+  border-radius: 5px;
+  padding: 0 15px;
+  background-color: burlywood;
+}
+
+ul {
+  margin: auto;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #63adf2;
+  color: white;
+  font-size: 18px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-bottom: 1px solid black;
+
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+ul li:nth-child(odd) {
+  background: #304d6d;
+  color: white;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+  color: black;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: black;
+  text-decoration: line-through;
+}
+
+ul li.checked:hover {
+  background: #ddd;
+  color: black;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: " ";
+  position: absolute;
+  border-color: black;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+.close {
+  margin-left: 150px;
+  margin-right: 10px;
+  float: right;
+  height: 100%;
+}
+
+.close:hover {
+  color: orangered;
+}
