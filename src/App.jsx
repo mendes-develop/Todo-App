@@ -1,4 +1,6 @@
 import React from "react";
+import Form from "./Form";
+import Todos from "./Todos";
 import "./App.css";
 
 const todos = [
@@ -62,6 +64,27 @@ class App extends React.Component {
         this.setState({ todos: [newTodo, ...oldTodos], input: "" });
     };
 
+    _toggle = todo => {
+        console.log("hello", todo);
+        const oldTodos = this.state.todos;
+
+        const newTodos = oldTodos.map(item => {
+            if (item.id === todo.id) {
+                item.completed = !item.completed;
+                return todo;
+            } else {
+                return item;
+            }
+        });
+
+        this.setState({ todos: newTodos });
+    };
+
+    _deleteTodo = evt => {
+        evt.stopPropagation();
+        console.log("Remove item");
+    };
+
     // Funçao que retorna o component em HTML/JSX
     render() {
         return (
@@ -69,29 +92,18 @@ class App extends React.Component {
                 <h1 className='Title'>Lista de Tarefas</h1>
 
                 {/* Input field pra dicionar tarefa */}
-                <div className='Form'>
-                    <input
-                        className='InputItem'
-                        type='text'
-                        onChange={this._onChange}
-                        value={this.state.input}
-                    />
-                    <button className='AddButton' onClick={this._onClick}>
-                        Adicionar
-                    </button>
-                </div>
+                <Form
+                    input={this.state.input}
+                    _onChange={this._onChange}
+                    _onClick={this._onClick}
+                />
 
                 {/* Unordered List */}
-                <ul>
-                    {this.state.todos.map(function (todo) {
-                        return (
-                            <li className={todo.completed ? "checked" : ""}>
-                                {todo.title}
-                                <div className='close'>X</div>
-                            </li>
-                        );
-                    })}
-                </ul>
+                <Todos
+                    todos={this.state.todos}
+                    _toggle={this._toggle}
+                    _deleteTodo={this._deleteTodo}
+                />
             </div>
         );
     }
