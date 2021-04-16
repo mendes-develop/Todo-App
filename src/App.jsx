@@ -26,7 +26,41 @@ const todos = [
 
 class App extends React.Component {
     //Memoria local do component
-    state = {};
+    state = {
+        input: "",
+        todos: [],
+    };
+
+    componentDidMount() {
+        this.setState({ todos: todos });
+    }
+
+    _onChange = evt => {
+        const value = evt.target.value;
+        this.setState({ input: value });
+    };
+
+    // onCLick
+    _onClick = () => {
+        const oldTodos = this.state.todos;
+        const finalInput = this.state.input;
+
+        const newTodo = {
+            id: oldTodos.lenght,
+            title: finalInput,
+            completed: false,
+        };
+
+        // Se nao input esta vazio, imprimir alerta e sair do onclick
+        if (finalInput === "") {
+            alert("please, type something");
+            return;
+        }
+
+        // pegar a list de "todos antiga"
+        // adicionar novo item
+        this.setState({ todos: [newTodo, ...oldTodos], input: "" });
+    };
 
     // Funçao que retorna o component em HTML/JSX
     render() {
@@ -36,18 +70,28 @@ class App extends React.Component {
 
                 {/* Input field pra dicionar tarefa */}
                 <div className='Form'>
-                    <input className='InputItem' type='text' />
-                    <button className='AddButton'>Adicionar</button>
+                    <input
+                        className='InputItem'
+                        type='text'
+                        onChange={this._onChange}
+                        value={this.state.input}
+                    />
+                    <button className='AddButton' onClick={this._onClick}>
+                        Adicionar
+                    </button>
                 </div>
 
                 {/* Unordered List */}
                 <ul>
-                    <li>
-                        {todos[0].title}
-                        <div className='close'>X</div>
-                    </li>
+                    {this.state.todos.map(function (todo) {
+                        return (
+                            <li className={todo.completed ? "checked" : ""}>
+                                {todo.title}
+                                <div className='close'>X</div>
+                            </li>
+                        );
+                    })}
                 </ul>
-
             </div>
         );
     }
